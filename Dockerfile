@@ -11,8 +11,8 @@ WORKDIR /app
 # Copy the Python script into the container
 COPY script.py .
 
-# Create a crontab file
-RUN echo "*/10 * * * * python /app/script.py >> /var/log/cron.log 2>&1" > /etc/cron.d/my-cron-job
+# Create a crontab file to run the script every minute
+RUN echo "* * * * * python /app/script.py >> /var/log/cron.log 2>&1" > /etc/cron.d/my-cron-job
 
 # Give execution rights on the cron job
 RUN chmod 0644 /etc/cron.d/my-cron-job
